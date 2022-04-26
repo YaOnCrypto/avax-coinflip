@@ -16,35 +16,53 @@ export const CoinFlip: React.FC<Props> = () => {
       console.log("Coinflip is deployed at ", greeter.instance.address);
       console.log(greeter.instance)
       setMessage('message');
+      fundFunction('5')
     };
     doAsync();
   }, [greeter]);
-
+  
+  const fundFunction = async (amt: string) =>{
+    if (!greeter.instance) throw Error("Greeter instance not ready");
+    const tx = await greeter.instance.fundContract({
+      value: ethers.utils.parseEther(amt)
+  });
+    console.log("setGreeting tx", tx);
+    await tx.wait();
+    const _message = await greeter.instance.getBalance();
+    console.log("Contract balance: ", formatUnits(_message));
+  }
+  
   const handleSetGreeting = async () => {
     if (!greeter.instance) throw Error("Greeter instance not ready");
     if (greeter.instance) {
-      const tx = await greeter.instance.fundContract({
-        value: ethers.utils.parseEther(inputGreeting)
-    });
-      console.log("setGreeting tx", tx);
-      await tx.wait();
-      const _message = await greeter.instance.getBalance();
-      console.log("Contract balance: ", formatUnits(_message));
+      // fundFunction(inputGreeting)
+      const tx = await greeter.instance.flip(0, {value: ethers.utils.parseEther(inputGreeting)})
+      const receipt = await tx.wait()
+      console.log(receipt.events[0].args)
       setInputGreeting("");
-    }
-  };
-  return (
-    <div> 
-      <img className="avac-coin" width="75%" src="https://www.avaxcoinflip.com/smolgoldt.png"/>
+  }
+};
+return (
+  <div> 
       {/* <input
       type="number"
-        value={inputGreeting}
-        onChange={(e) => setInputGreeting(e.target.value)}
+      value={inputGreeting}
+      onChange={(e) => setInputGreeting(e.target.value)}
       ></input>
-      <button onClick={() => handleSetGreeting()}>Set greeting</button> */}
+    <button onClick={() => handleSetGreeting()}>Set greeting</button> */}
+
+<div className="flip-parent">
+
+        <div className="flip-child">
+    <img className="avax-coin" width="50%" src="https://www.avaxcoinflip.com/smolgoldt.png"/>
       <div className="flip-form">
-      <Form.Control size="lg" type="text" placeholder="Normal text" />
-      <button className="flip-button">Flip</button>
+      <Form.Control value={inputGreeting} size="lg" type="text" placeholder="Bet amount" onChange={(e) => setInputGreeting(e.target.value)} />
+      <button className="flip-button" onClick={() => handleSetGreeting()} >Flip</button>
+      </div>
+      </div>
+      <div className="flip-child">
+      <p>lorem ipsum dolor sit amet</p>
+      </div>
       </div>
     </div>
   );
