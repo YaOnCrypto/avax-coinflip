@@ -1,0 +1,40 @@
+.flip-button{
+    background: rgb(73, 73, 255);
+    border-radius: 1em;
+    border: none;
+    width: 5em;
+    height: 2em;
+    color: white;
+    font-family: sans-serif;
+}
+
+.form-control{
+    background-color: rgb(51, 51, 51)!important;
+    color:white!important;
+    outline: 0!important;
+    border: none!important;
+    transition: background-color 0.25s linear!important;
+}
+
+.form-control:hover, .form-control:focus {
+    background-color: rgb(59, 59, 59)!important;
+    border-color: inherit!important;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+}
+
+.avac-coin{
+    filter: hue-rotate(190deg);
+}
+
+.flip-form{
+     /* This bit sets up the horizontal layout */
+  display:flex;
+  flex-direction:row;
+  
+  /* This bit draws the box around it */
+  border:1px solid grey;
+
+  /* I've used padding so you can see the edges of the elements. */
+  padding:2px;
+}
