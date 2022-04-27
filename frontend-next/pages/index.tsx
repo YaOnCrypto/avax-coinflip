@@ -2,6 +2,8 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 
 import { CoinFlip } from '../components/CoinFlip';
+
+import { Header } from '../components/Header';
 import { Symfoni } from '../hardhat/SymfoniContext';
 
 const Home: NextPage = () => {
@@ -9,8 +11,7 @@ const Home: NextPage = () => {
     <div className="App">
       <header className="App-header">
         <Symfoni autoInit={true} >
-        {/* <Nav
-             Main */}
+             <Header/>
           <CoinFlip></CoinFlip>
         </Symfoni>
       </header>

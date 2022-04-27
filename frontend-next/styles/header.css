@@ -1,0 +1,10 @@
+.header{
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.connect-button{
+    position: relative;
+    top: 0;
+}
