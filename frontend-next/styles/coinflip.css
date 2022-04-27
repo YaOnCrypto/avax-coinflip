@@ -1,4 +1,4 @@
-.flip-button{
+.flip-button {
     background: linear-gradient(105deg, rgb(176 123 214), rgb(113, 117, 171));
     border-radius: 1em;
     margin: 0.15em;
@@ -8,38 +8,56 @@
     font-family: sans-serif;
 }
 
-.form-control, .flip-form{
-    background-color: rgb(51, 51, 51)!important;
-    color:white!important;
-    outline: 0!important;
-    border: none!important;
-    transition: background-color 0.25s linear!important;
+.form-control,
+.flip-form {
+    background-color: rgb(51, 51, 51) !important;
+    color: white !important;
+    outline: 0 !important;
+    border: none !important;
+    transition: background-color 0.25s linear !important;
 }
 
-.form-control:hover, .form-control:focus, .flip-form:hover {
-    background-color: rgb(59, 59, 59)!important;
-    border-color: inherit!important;
-    -webkit-box-shadow: none!important;
-    box-shadow: none!important;
+.form-control:hover,
+.form-control:focus,
+.flip-form:hover {
+    background-color: rgb(59, 59, 59) !important;
+    border-color: inherit !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
 }
 
-.avax-coin{
+.avax-coin {
     filter: hue-rotate(190deg);
     margin: 1em;
+    width: 15vw;
 }
 
-.flip-form{
-  display:flex;
-  flex-direction:row;
-  border:1px solid grey;
+.flip-form {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid grey;
 
-  padding:2px;
+    padding: 2px;
+    width: 30vw;
 }
 
-.flip-parent{
+.flip-whole {
     display: flex;
 }
 
-.flip-child{
-    flex: 1;
+.flip-settings {
+    padding: 2vw;
+}
+
+.side-select {
+    font-size: 1vw;
+    margin: 1vw;
+    width: 5vw;
+    height: 5vw;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 5vw;
+    background-color: rgba(255, 255, 255, 0.068);
+    border-radius: 0.25vw;
+    cursor: pointer;
 }
