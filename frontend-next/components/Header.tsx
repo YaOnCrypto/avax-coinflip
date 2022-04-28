@@ -8,7 +8,7 @@ interface Props {}
 
 export const Header: React.FC<Props> = () => {
   return (
-    <Navbar className="header" variant="dark">
+    <Navbar className="header" fixed="top" bg="dark" variant="dark">
       <Container>
         <Navbar.Brand href="#home">
           <img
@@ -24,7 +24,7 @@ export const Header: React.FC<Props> = () => {
           <Nav.Link href="/flip">Flip</Nav.Link>
         </Nav>
       </Container>
-      <Button className="connect-button"></Button>
+      <Button className="connect-button" variant="secondary">Connect</Button>
     </Navbar>
   );
 };

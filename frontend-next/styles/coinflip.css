@@ -3,10 +3,10 @@
     border-radius: 1em;
     margin: 0.15em;
     border: none;
-    width: 8vw;
+    width: 6vw;
     color: white;
     font-family: sans-serif;
-    font-size: 1.5vw;
+    font-size: 1.3vw;
 }
 
 .form-control,
@@ -16,6 +16,7 @@
     outline: 0 !important;
     border: none !important;
     transition: background-color 0.25s linear !important;
+    border-radius: 0.25em;
 }
 
 .form-control:hover,
