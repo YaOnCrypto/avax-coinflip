@@ -29,17 +29,11 @@ function TokenPrice(props) {
         alt="logo"
         style={{ height: props?.size || "35px" }}
       />
-      <span
-        style={{ cursor: "pointer" }}
-        onClick={toggleDisplayStyle}
-        title={`Show in ${isUSDMode ? "ETH" : "USD"}`}
-      >
-        {formattedData &&
-          (isUSDMode
-            ? formattedData.formattedUsd
-            : formattedData.formattedNative)}
-      </span>
-    </div>
+
+
+      {formattedData &&
+        (formattedData.formattedUsd)}
+    </div >
   );
 }
 export default TokenPrice;

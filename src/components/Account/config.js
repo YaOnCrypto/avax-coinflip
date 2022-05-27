@@ -2,7 +2,9 @@ import Metamask from "./WalletIcons/metamaskWallet.png";
 import Coin98 from "./WalletIcons/Coin98.png";
 import WalletConnect from "./WalletIcons/wallet-connect.svg";
 import MathWallet from "./WalletIcons/MathWallet.svg";
+// eslint-disable-next-line import/no-webpack-loader-syntax
 import TokenPocket from "!file-loader!./WalletIcons/TokenPocket.svg";
+// eslint-disable-next-line import/no-webpack-loader-syntax
 import SafePal from "!file-loader!./WalletIcons/SafePal.svg";
 import TrustWallet from "./WalletIcons/TrustWallet.png";
 

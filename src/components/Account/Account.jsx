@@ -17,11 +17,12 @@ const styles = {
     alignItems: "center",
     width: "fit-content",
     borderRadius: "12px",
-    backgroundColor: "rgb(244, 244, 244)",
+    backgroundColor: "rgb(52, 52, 52)",
     cursor: "pointer",
   },
   text: {
-    color: "#21BF96",
+    color: "rgba(255,255,255,.55)",
+    marginBottom: "0",
   },
   connector: {
     alignItems: "center",
@@ -44,18 +45,25 @@ const styles = {
 };
 
 function Account() {
-  const { authenticate, isAuthenticated, account, chainId, logout } =
+  const { isWeb3Enabled, enableWeb3, deactivateWeb3, account, chainId, logout, Moralis } =
     useMoralis();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isAuthModalVisible, setIsAuthModalVisible] = useState(false);
-
-  if (!isAuthenticated || !account) {
+  const connectMetamask = async () => {
+    try {
+      enableWeb3();
+      console.log(isWeb3Enabled, account)
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  if (!isWeb3Enabled || !account) {
     return (
       <>
-        <div onClick={() => setIsAuthModalVisible(true)}>
-          <p style={styles.text}>Authenticate</p>
+        <div style={{ cursor: "pointer" }} onClick={() => connectMetamask()}>
+          <p style={styles.text}>Connect Wallet</p>
         </div>
-        <Modal
+        {/* <Modal
           visible={isAuthModalVisible}
           footer={null}
           onCancel={() => setIsAuthModalVisible(false)}
@@ -85,7 +93,8 @@ function Account() {
                 key={key}
                 onClick={async () => {
                   try {
-                    await authenticate({ provider: connectorId });
+                    await enableWeb3({ provider: connectorId });
+                    console.log(isWeb3Enabled)
                     window.localStorage.setItem("connectorId", connectorId);
                     setIsAuthModalVisible(false);
                   } catch (e) {
@@ -98,7 +107,7 @@ function Account() {
               </div>
             ))}
           </div>
-        </Modal>
+        </Modal> */}
       </>
     );
   }
@@ -125,7 +134,7 @@ function Account() {
         <p style={{ marginRight: "5px", ...styles.text }}>
           {getEllipsisTxt(account, 6)}
         </p>
-        <Blockie currentWallet scale={3} />
+        <Blockie address={account} scale={3} />
       </div>
       <Modal
         visible={isModalVisible}
@@ -153,7 +162,7 @@ function Account() {
             copyable
             style={{ fontSize: "20px" }}
           />
-          <div style={{ marginTop: "10px", padding: "0 10px" }}>
+          {/* <div style={{ marginTop: "10px", padding: "0 10px" }}>
             <a
               href={`${getExplorer(chainId)}/address/${account}`}
               target="_blank"
@@ -162,26 +171,9 @@ function Account() {
               <SelectOutlined style={{ marginRight: "5px" }} />
               View on Explorer
             </a>
-          </div>
+          </div> */}
         </Card>
-        <Button
-          size="large"
-          type="primary"
-          style={{
-            width: "100%",
-            marginTop: "10px",
-            borderRadius: "0.5rem",
-            fontSize: "16px",
-            fontWeight: "500",
-          }}
-          onClick={async () => {
-            await logout();
-            window.localStorage.removeItem("connectorId");
-            setIsModalVisible(false);
-          }}
-        >
-          Disconnect Wallet
-        </Button>
+
       </Modal>
     </>
   );

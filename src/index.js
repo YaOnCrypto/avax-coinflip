@@ -1,8 +1,14 @@
 import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import Header from "./Header";
+import "./css/coinflip.css"
+import { CoinFlip } from "components/Coinflip";
+import Footer from "components/Footer";
+
 import { MoralisProvider } from "react-moralis";
-import "./index.css";
+import "./css/index.css";
+import "./css/app.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import QuickStart from "components/QuickStart";
 
@@ -18,19 +24,17 @@ const Application = () => {
     throw new Error(
       "Missing Moralis Application ID or Server URL. Make sure to set your .env file.",
     );
-  if (isServerInfo)
-    return (
-      <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
-        <App isServerInfo />
-      </MoralisProvider>
-    );
-  else {
-    return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <QuickStart />
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <header className="App-header">
+        <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
+          <Header />
+          <CoinFlip />
+          <Footer />
+        </MoralisProvider>
+      </header>
+    </div>
+  );
 };
 
 ReactDOM.render(
