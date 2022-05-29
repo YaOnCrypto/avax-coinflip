@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 export const CoinFlip = () => {
-    const { Moralis, account, chainId } = useMoralis();
+    const { Moralis, account, chainId, web3 } = useMoralis();
     const ethers = Moralis.web3Library;
     // const greeter = useContext(CoinFlipContext);
     const greeter = '';
@@ -30,7 +30,7 @@ export const CoinFlip = () => {
             setFlipContract(_contract)
         };
         doAsync();
-    }, []);
+    }, [web3]);
 
     const initContract = async () => {
         const provider = await Moralis.enableWeb3();

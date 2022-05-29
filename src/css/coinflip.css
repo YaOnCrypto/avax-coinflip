@@ -103,3 +103,43 @@
 .navbar-nav {
     font-size: 1rem;
 }
+
+.wrongNetwork-modal-back {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.76);
+    z-index: 4;
+}
+
+.wrongNetwork-modal {
+    position: relative;
+    width: 30vw;
+    height: 30vh;
+    border-radius: 2vw;
+    background: rgb(22, 22, 22);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    z-index: 5;
+    padding: 1vw;
+}
+
+.wrongNetwork-text {
+    font-size: 1vw;
+    margin-top: 2vw;
+}
+
+.wrongNetwork-button {
+    background-color: #827ccd;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 1vw 2vw;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8vw;
+    cursor: pointer;
+    border-radius: 1vw;
+}

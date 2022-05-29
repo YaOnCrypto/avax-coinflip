@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import {
   BrowserRouter as Router,
@@ -15,7 +15,7 @@ import ERC20Transfers from "components/ERC20Transfers";
 import DEX from "components/DEX";
 import NFTBalance from "components/NFTBalance";
 import Wallet from "components/Wallet";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav, Container, Button, Modal } from "react-bootstrap";
 import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
 import "./css/style.css";
@@ -62,17 +62,71 @@ const Header = () => {
   const { isWeb3Enabled, account, enableWeb3, isAuthenticated, web3, isWeb3EnableLoading } =
     useMoralis();
 
+  const [wrongNetwork, setWrongNetwork] = useState(false)
+
 
   useEffect(() => {
     setTimeout(() => {
+
+      if (web3._network.chainId != 43113) setWrongNetwork(true)
+      else setWrongNetwork(false)
+
       if (!isWeb3Enabled && !isWeb3EnableLoading)
         enableWeb3();
     }, 400)
 
-  }, []);
+  }, [web3]);
+
+  const switchNetwork = () => {
+    window.ethereum.request({
+      method: "wallet_addEthereumChain",
+      params: [{
+        chainId: "0xa869",
+        rpcUrls: ["https://api.avax-test.network/ext/bc/C/rpc"],
+        chainName: "Avalanche FUJI Testnet",
+        nativeCurrency: {
+          name: "AVAX",
+          symbol: "AVAX",
+          decimals: 18
+        },
+        blockExplorerUrls: ["https://testnet.explorer.avax.network/"]
+      }]
+    });
+  }
 
   return (
     <>
+
+      {/* <Modal
+        size="sm"
+        show={wrongNetwork}
+        onHide={() => setWrongNetwork(false)}
+        aria-labelledby="example-modal-sizes-title-sm"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-sm">
+            Wrong Network
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          You must be on Avalanche FUJI Testnet
+          <Button>Switch to FUJI Testnet</Button></Modal.Body>
+      </Modal> */}
+
+
+      {wrongNetwork ? <div className="wrongNetwork-modal-back">
+        <div className="wrongNetwork-modal">
+          <Modal.Header>
+            <Modal.Title id="example-modal-sizes-title-sm">
+              Wrong Network
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p className="wrongNetwork-text">You must be on Avalanche FUJI Testnet</p>
+            <button onClick={() => switchNetwork()} className="wrongNetwork-button">Switch to FUJI Testnet</button></Modal.Body>
+        </div>
+      </div> : null}
+
       <Navbar className="header" fixed="top" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="/">
