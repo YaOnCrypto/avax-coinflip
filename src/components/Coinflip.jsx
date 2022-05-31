@@ -108,10 +108,12 @@ export const CoinFlip = () => {
 
                     {isFlipping ? <img
                         className="avax-coin"
-                        src="https://gateway.pinata.cloud/ipfs/QmPZmgchPZUJBSzxxTifuLgJYa2v2QHj9bTmD9x3JQ5uZz"
+                        src="/coin-flipping.gif"
+                        style={{ pointerEvents: "none" }}
                     /> : <img
                         className="avax-coin"
-                        src="https://www.avaxcoinflip.com/smolgoldt.png"
+                        src="/coin.png"
+                        style={{ pointerEvents: "none" }}
                     />}
 
                     <div className="flip-form">
