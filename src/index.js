@@ -1,4 +1,4 @@
-import React, { StrictMode } from "react";
+import React, { StrictMode, useEffect } from "react";
 import ReactDOM from "react-dom";
 import Header from "./Header";
 import "./css/coinflip.css"
@@ -24,6 +24,7 @@ const Application = () => {
     throw new Error(
       "Missing Moralis Application ID or Server URL. Make sure to set your .env file.",
     );
+
   return (
     <div className="App">
       <header className="App-header">
